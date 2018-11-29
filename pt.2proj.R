@@ -13,7 +13,6 @@ ddSim=function(t,y,p){
   e=p[5]
   s=p[6]
   
-  
   dHdt=(b*H)*(1-a*H)-(w*P)*(H/(d+H))
   dPdt=(e*w*P)*(H/(d+H))-s*P
   
@@ -23,15 +22,11 @@ ddSim=function(t,y,p){
 params = c(.8,.001,5,400,.07,.2)
 NO = c(500,120)
 times = seq(0,100, by = .1)
-
 modelSim = ode(y=NO, times = times, func = ddSim, parms = params)
 out= data.frame(data=modelSim, time = modelSim[,1], prey=modelSim[,2], pred=modelSim[,3])
-
 out %>%
   gather(key,value, prey, pred) %>%
   ggplot(aes(x=time, y=value, color=key)) + geom_line()
-
-
 # modeled with changing parameters
 parameters2 = data.frame("b"=c(.8,1.6,.4,.8,.8,.8,.8,.8,.8,.8,.8,.8,.8), 
                          "a"=c(.001,.001,.001,.002,.0005,.001,.001,.001,.001,.001,.001,.001,.001),
@@ -39,14 +34,12 @@ parameters2 = data.frame("b"=c(.8,1.6,.4,.8,.8,.8,.8,.8,.8,.8,.8,.8,.8),
                          "d"=c(400,400,400,400,400,400,400,800,200,400,400,400,400),
                          "e"=c(.07,.07,.07,.07,.07,.07,.07,.07,.07,1.4,.035,.07,.07),
                          "s"=c(.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.4,.1))
-
 modelSimList=list()
 for(i in 1:nrow(parameters2)){
   params = parameters2[i,]
   modelSim2 = ode(y=NO, times = times, func = ddSim, parms = params)
   modelSimList[[i]] = data.frame(time = modelSim2[,1], prey=modelSim2[,2], pred=modelSim2[,3])
 }
-
 for(j in 1:length(modelSimList)){
   plot <- modelSimList[[j]] %>%
     gather(key,value, prey, pred) %>%
@@ -55,65 +48,65 @@ for(j in 1:length(modelSimList)){
 }
 plot <- modelSimList[[1]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("Base")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("Base")
 print(plot)
 
 plot <- modelSimList[[2]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("HighB")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("HighB")
 print(plot)
 
 plot <- modelSimList[[3]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("LowB")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("LowB")
 print(plot)
 
 plot <- modelSimList[[4]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("HighA")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("HighA")
 print(plot)
 
 plot <- modelSimList[[5]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("LowA")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("LowA")
 print(plot)
 
 plot <- modelSimList[[6]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("HighW")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("HighW")
 print(plot)
 
 plot <- modelSimList[[7]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("LowW")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("LowW")
 print(plot)
 
 plot <- modelSimList[[8]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("HighD")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("HighD")
 print(plot)
 
 plot <- modelSimList[[9]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("LowD")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("LowD")
 print(plot)
 
 plot <- modelSimList[[10]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("HighE")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("HighE")
 print(plot)
 
 plot <- modelSimList[[11]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("LowE")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("LowE")
 print(plot)
 
 plot <- modelSimList[[12]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("HighS")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("HighS")
 print(plot)
 
 plot <- modelSimList[[13]] %>%
   gather(key,value, prey, pred) %>%
-  ggplot(aes(x=time, y=value, color=key,)) + geom_line() +ggtitle("LowS")
+  ggplot(aes(x=time, y=value, color=key)) + geom_line() +ggtitle("LowS")
 print(plot)
