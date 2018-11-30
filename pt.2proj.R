@@ -21,7 +21,7 @@ ddSim=function(t,y,p){
 # pt.2a Specific given initial parameters
 params = c(.8,.001,5,400,.07,.2)
 NO = c(500,120)
-times = seq(0,100, by = .1)
+times = seq(0,200, by = .1)
 modelSim = ode(y=NO, times = times, func = ddSim, parms = params)
 out= data.frame(data=modelSim, time = modelSim[,1], prey=modelSim[,2], pred=modelSim[,3])
 out %>%
@@ -32,7 +32,7 @@ parameters2 = data.frame("b"=c(.8,1.6,.4,.8,.8,.8,.8,.8,.8,.8,.8,.8,.8),
                          "a"=c(.001,.001,.001,.002,.0005,.001,.001,.001,.001,.001,.001,.001,.001),
                          "w"=c(5,5,5,5,5,10,2.5,5,5,5,5,5,5),
                          "d"=c(400,400,400,400,400,400,400,800,200,400,400,400,400),
-                         "e"=c(.07,.07,.07,.07,.07,.07,.07,.07,.07,1.4,.035,.07,.07),
+                         "e"=c(.07,.07,.07,.07,.07,.07,.07,.07,.07,.14,.035,.07,.07),
                          "s"=c(.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.4,.1))
 modelSimList=list()
 for(i in 1:nrow(parameters2)){
