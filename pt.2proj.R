@@ -36,7 +36,7 @@ parameters2 = data.frame("b"=c(.8,1.6,.4,.8,.8,.8,.8,.8,.8,.8,.8,.8,.8),
                          "s"=c(.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.2,.4,.1))
 modelSimList=list()
 for(i in 1:nrow(parameters2)){
-  params = parameters2[i,]
+  params = unlist(parameters2[i,])
   modelSim2 = ode(y=NO, times = times, func = ddSim, parms = params)
   modelSimList[[i]] = data.frame(time = modelSim2[,1], prey=modelSim2[,2], pred=modelSim2[,3])
 }
